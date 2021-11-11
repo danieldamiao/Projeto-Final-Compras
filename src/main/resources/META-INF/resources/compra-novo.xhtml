@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://xmlns.jcp.org/jsf/core"
+          xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          xml:lang="en"
+          lang="en">
+
+<f:metadata>
+    <f:viewAction action="#{compraBean.novo}"/>
+</f:metadata>
+
+<h:head>
+    <title>Produto</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <ui:include src="menu.xhtml"></ui:include>
+        <p:breadCrumb>
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Histórico de Compras" url="compra-listagem.xhtml"/>
+            <p:menuitem value="Novo"/>
+        </p:breadCrumb>
+        <p:card>
+
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h:panelGrid columns="1">
+
+                <p:inputText value="#{compraBean.compra.nomeJogo}" placeholder="Nome Game">
+                    <p:autoUpdate/>
+                </p:inputText>
+
+                <p:inputNumber value="#{compraBean.compra.precoJogo}" placeholder="Preço Game" decimalSeparator="," >
+                    <p:autoUpdate/>
+                </p:inputNumber>
+
+
+                <p:inputText value="#{compraBean.compra.nomeUsuario}" placeholder="Nome User" >
+                    <p:autoUpdate/>
+
+                </p:inputText>
+
+                <p:inputText value="#{compraBean.compra.horarioCompra}" placeholder="Horário da Compra" >
+                    <p:autoUpdate/>
+
+                </p:inputText>
+
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <p:commandButton value="Salvar" actionListener="#{compraBean.salvar}" icon="pi pi-save"/>
+                <p:button value="Voltar" outcome="compra-listagem.xhtml" icon="pi pi-times" />
+            </h:panelGrid>
+
+        </p:card>
+    </h:form>
+</h:body>
+
+</html>

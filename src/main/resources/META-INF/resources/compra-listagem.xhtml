@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<f:metadata>
+    <f:viewAction action="#{compraBean.listar}"/>
+</f:metadata>
+
+<h:head>
+    <title>Produto</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <ui:include src="menu.xhtml"></ui:include>
+
+        <p:breadCrumb>
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Cadastros"/>
+            <p:menuitem value="Produto"/>
+            <p:menuitem value="Listagem"/>
+
+        </p:breadCrumb>
+        <p:card>
+
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <p:dataTable value = "#{compraBean.compras}" var="compra">
+                <f:facet name="header">
+                    <p:button icon ="pi pi-plus" outcome="compra-novo.xhtml"/>
+                </f:facet>
+                <p:column headerText="Nome Jogo">
+                    <h:outputText value ="#{compra.nomeJogo}"/>
+                </p:column>
+
+                <p:column headerText="Preço">
+                    <h:outputText value ="#{compra.precoJogo}">
+                        <f:convertNumber pattern="0.00" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Validade">
+                    <h:outputText value ="#{compra.horarioCompra}">
+                        <f:convertDateTime type= "LocalDateTime" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column >
+                    <p:commandButton icon="pi pi-pencil" actionListener="#{compraBean.selecionarEdicao(compra)}"/>
+                    <p:spacer width="1"/>
+                    <p:commandButton icon="pi pi-trash" actionListener="#{compraBean.selecionarExclusao(compra)}"/>
+                </p:column>
+
+
+
+            </p:dataTable>
+
+        </p:card>
+    </h:form>
+</h:body>
+
+</html>
